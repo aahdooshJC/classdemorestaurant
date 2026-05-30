@@ -14,8 +14,9 @@ A single-page restaurant website for a high-class Imperial Chinese dining experi
 - Smooth scroll-triggered fade-in animations via IntersectionObserver
 - Mobile hamburger nav with body scroll lock and Escape-to-close
 - Testimonials carousel with auto-play, prev/next controls, and pause on hover
-- Reservation form with client-side validation and success confirmation
+- Reservation form with client-side validation, success confirmation, and voice announcement (Web Speech API)
 - WhatsApp floating chat button with pulse animation and tooltip
+- "Locate Me" floating button with interactive Google Maps pop-up
 - Accessible — ARIA attributes on interactive elements, `prefers-reduced-motion` respected
 
 ## Structure
@@ -23,7 +24,7 @@ A single-page restaurant website for a high-class Imperial Chinese dining experi
 ```
 index.html   — all markup and content
 styles.css   — all styling (CSS custom properties for design tokens)
-script.js    — all interactivity (six self-contained init functions)
+script.js    — all interactivity (seven init functions + onEnquiryFormSuccess hook)
 ```
 
 ## Running Locally

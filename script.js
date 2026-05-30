@@ -2,12 +2,13 @@
    MAISON LUMIÈRE — script.js
    ============================================================
    Functions:
-     initNavScroll()     — transparent → solid nav on scroll
-     initHamburger()     — mobile menu toggle
-     initFadeIn()        — Intersection Observer scroll animations
-     initCarousel()      — testimonials auto-rotating carousel
-     initForm()          — reservation form validation + success
-     initCopyrightYear() — dynamic footer year
+     initNavScroll()        — transparent → solid nav on scroll
+     initHamburger()        — mobile menu toggle
+     initFadeIn()           — Intersection Observer scroll animations
+     initCarousel()         — testimonials auto-rotating carousel
+     initForm()             — reservation form validation + success
+     initCopyrightYear()    — dynamic footer year
+     onEnquiryFormSuccess() — project-level hook: voice confirmation
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -378,6 +379,9 @@ function initForm() {
     success.hidden = false;
     success.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
+    // Project-level hook: fire voice confirmation after successful submission
+    onEnquiryFormSuccess();
+
     // Auto-reset after 10 seconds
     setTimeout(() => {
       form.reset();
@@ -395,6 +399,41 @@ function initForm() {
 function initCopyrightYear() {
   const el = document.getElementById('copyright-year');
   if (el) el.textContent = new Date().getFullYear();
+}
+
+
+/* ============================================================
+   PROJECT-LEVEL HOOK — fires after enquiry form success
+   Uses Web Speech API so no external dependency is needed.
+   Gracefully skips on browsers that don't support speechSynthesis.
+   ============================================================ */
+function onEnquiryFormSuccess() {
+  if (!('speechSynthesis' in window)) return;
+
+  const MESSAGE = 'Hurray, thank you for your submission. We will get back to you in one business day.';
+
+  // Cancel any speech already in progress
+  window.speechSynthesis.cancel();
+
+  const utterance = new SpeechSynthesisUtterance(MESSAGE);
+  utterance.lang   = 'en-US';
+  utterance.rate   = 0.95;
+  utterance.pitch  = 1.1;
+  utterance.volume = 1;
+
+  function pickVoiceAndSpeak() {
+    const voices = window.speechSynthesis.getVoices();
+    const preferred = voices.find(v => v.lang.startsWith('en') && /female|woman|samantha|karen|victoria/i.test(v.name));
+    if (preferred) utterance.voice = preferred;
+    window.speechSynthesis.speak(utterance);
+  }
+
+  // Voices may not be populated yet on first page load
+  if (window.speechSynthesis.getVoices().length > 0) {
+    pickVoiceAndSpeak();
+  } else {
+    window.speechSynthesis.addEventListener('voiceschanged', pickVoiceAndSpeak, { once: true });
+  }
 }
 
 
