@@ -19,13 +19,13 @@ python3 -m http.server 8080
 
 ## Architecture
 
-Single-page site for **Maison Lumière**, an upscale French restaurant. No frameworks, no dependencies beyond Google Fonts (loaded via CDN `<link>`).
+Single-page site for **御宴 Yu Yan**, an upscale Imperial Chinese restaurant. No frameworks, no dependencies beyond Google Fonts (loaded via CDN `<link>`).
 
 ### CSS (`styles.css`)
 All design tokens are CSS custom properties on `:root` — colours, fonts, spacing, and effects are all defined there. The file is organised in order: reset → utilities → header/nav → hero → menu → testimonials → reservations → footer → animations → media queries. Breakpoints are mobile-first: `480px`, `768px`, `1024px`, `1280px`.
 
 ### JavaScript (`script.js`)
-Six self-contained init functions called from a single `DOMContentLoaded` listener:
+Seven init functions + one project-level hook, all called from a single `DOMContentLoaded` listener:
 
 | Function | Responsibility |
 |---|---|
@@ -35,6 +35,9 @@ Six self-contained init functions called from a single `DOMContentLoaded` listen
 | `initCarousel()` | Testimonials auto-carousel (5 s interval); prev/next/dot controls; pauses on hover/focus |
 | `initForm()` | Client-side validation, inline error display, success message with interpolated values, 10 s auto-reset |
 | `initCopyrightYear()` | Writes current year into `#copyright-year` |
+| `initWhatsApp()` | WhatsApp floating chat button with pulse animation and pre-filled message |
+| `initLocateMe()` | "Locate Me" floating button with interactive Google Maps pop-up |
+| `onEnquiryFormSuccess()` | **Project-level hook** — fires after successful form submission; speaks voice confirmation via Web Speech API |
 
 ### Scroll animations
 CSS defines `.fade-in` as invisible + translated; JS adds `.is-visible` via `IntersectionObserver`. A `prefers-reduced-motion` media query in CSS disables the transition entirely — do not add motion in JS.
