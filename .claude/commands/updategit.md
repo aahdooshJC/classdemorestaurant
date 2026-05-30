@@ -29,10 +29,33 @@ Evaluate hits carefully: a CSS property like `input[type=password]` or a form la
 
 If any real secrets or passwords are found: **stop immediately**, tell the user exactly which file and line, and do not proceed until they are removed or moved to a `.env` file that is listed in `.gitignore`.
 
-### 2. Stage and push to GitHub
+### 2. Refresh README screenshot with Playwright
+
+Use the Playwright MCP tool to take a fresh viewport screenshot of the live site and save it to `screenshots/site-preview.png`:
+
+```python
+from playwright.sync_api import sync_playwright
+with sync_playwright() as p:
+    browser = p.chromium.launch()
+    page = browser.new_page(viewport={'width': 1280, 'height': 800})
+    page.goto('https://aahdooshjc.github.io/classdemorestaurant/', wait_until='networkidle')
+    # Scroll to trigger lazy-loaded images, then scroll back to top
+    page.evaluate('window.scrollTo(0, document.body.scrollHeight)')
+    page.wait_for_timeout(2000)
+    page.evaluate('window.scrollTo(0, 0)')
+    page.wait_for_timeout(1000)
+    page.screenshot(path='screenshots/site-preview.png', full_page=False)
+    browser.close()
+```
+
+If the Playwright MCP tool is available in the session, use it to navigate to the live URL and take a screenshot saved to `screenshots/site-preview.png`. If Node.js-based MCP is unavailable, fall back to running the Python script above via Bash (`python3 -c "..."`).
+
+Make sure `screenshots/site-preview.png` exists before staging. If the screenshot fails, skip it and note it in the summary.
+
+### 3. Stage and push to GitHub
 
 ```bash
-git add index.html styles.css script.js README.md CLAUDE.md
+git add index.html styles.css script.js README.md CLAUDE.md screenshots/site-preview.png
 git status
 ```
 
@@ -45,7 +68,7 @@ git push origin main
 
 Confirm the push succeeded and show the commit SHA.
 
-### 3. Update README.md
+### 4. Update README.md
 
 Read the current `README.md`. Then read `index.html`, `styles.css`, and `script.js` to check for any changes that should be reflected in the README (new sections, changed features, updated tech). 
 
@@ -64,7 +87,7 @@ git push origin main
 
 Only do this if the README actually needed changes — skip if it is already accurate.
 
-### 4. Verify and fix GitHub Pages deployment
+### 5. Verify and fix GitHub Pages deployment
 
 #### 4a. Confirm GitHub Pages is enabled and using GitHub Actions
 
@@ -175,7 +198,7 @@ gh run view --repo aahdooshJC/classdemorestaurant --log-failed $(gh run list --r
 
 Report the failure reason and fix it (bad workflow YAML, missing file, wrong path) before declaring the deployment successful.
 
-### 5. Update GitHub repo About (description + website + topics)
+### 6. Update GitHub repo About (description + website + topics)
 
 Use `gh` CLI to update the repo metadata:
 
@@ -192,7 +215,7 @@ gh repo edit aahdooshJC/classdemorestaurant \
 
 Confirm success and print the updated repo URL.
 
-### 6. Final security verification
+### 7. Final security verification
 
 After the push, confirm no sensitive files were included:
 
@@ -203,7 +226,7 @@ git show --stat HEAD
 
 Check that the committed files are only the expected source files. Report any unexpected files to the user.
 
-### 7. Summary report
+### 8. Summary report
 
 Print a concise summary:
 - Commit SHA and message

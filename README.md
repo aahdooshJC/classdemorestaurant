@@ -2,6 +2,8 @@
 
 A single-page restaurant website for an upscale French dining experience. Built with vanilla HTML, CSS, and JavaScript — no frameworks or dependencies.
 
+![Maison Lumière site preview](screenshots/site-preview.png)
+
 ## Live Site
 
 [https://aahdooshjc.github.io/classdemorestaurant/](https://aahdooshjc.github.io/classdemorestaurant/)
