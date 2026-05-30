@@ -1,8 +1,8 @@
-# Maison Lumière
+# 御宴 Yu Yan
 
-A single-page restaurant website for an upscale French dining experience. Built with vanilla HTML, CSS, and JavaScript — no frameworks or dependencies.
+A single-page restaurant website for a high-class Imperial Chinese dining experience. Built with vanilla HTML, CSS, and JavaScript — no frameworks or dependencies.
 
-![Maison Lumière site preview](screenshots/site-preview.png)
+![御宴 Yu Yan site preview](screenshots/site-preview.png)
 
 ## Live Site
 

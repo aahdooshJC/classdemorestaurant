@@ -358,8 +358,8 @@ function initForm() {
     form.hidden = true;
 
     success.innerHTML = `
-      <p style="font-size:1.5rem; font-family:'Cormorant Garamond',serif; margin-bottom:1rem; color:#f5f0e8;">
-        Merci, <strong>${escapeHtml(name)}</strong>!
+      <p style="font-size:1.5rem; font-family:'Ma Shan Zheng','Noto Serif SC',serif; margin-bottom:1rem; color:#FAF6EF; letter-spacing:0.06em;">
+        欢迎光临, <strong>${escapeHtml(name)}</strong>!
       </p>
       <p>
         Your reservation request for <strong>${guestLabel}</strong>
@@ -369,8 +369,8 @@ function initForm() {
       <p style="margin-top:0.75rem;">
         We will confirm your booking at <strong>${escapeHtml(email)}</strong> within 24 hours.
       </p>
-      <p style="margin-top:1.25rem; font-size:0.8rem; color:#c8c0b0; letter-spacing:0.06em;">
-        Nous nous réjouissons de vous accueillir.
+      <p style="margin-top:1.25rem; font-size:0.8rem; color:#c8b89a; letter-spacing:0.06em;">
+        品味千年，尽在御宴 · We look forward to welcoming you to Yu Yan.
       </p>
     `;
     success.hidden = false;

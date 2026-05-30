@@ -1,5 +1,5 @@
 /* ============================================================
-   MAISON LUMIÈRE — styles.css
+   御宴 YU YAN — styles.css
    ============================================================
    1.  Custom Properties
    2.  Reset & Base
@@ -20,24 +20,27 @@
    ============================================================ */
 :root {
   /* Colors */
-  --color-bg:           #1a1a1a;
-  --color-surface:      #242424;
-  --color-surface-alt:  #2e2e2e;
-  --color-cream:        #f5f0e8;
-  --color-cream-dim:    #c8c0b0;
-  --color-gold:         #c9a84c;
-  --color-gold-hover:   #e0be6a;
-  --color-gold-dim:     rgba(201, 168, 76, 0.15);
-  --color-overlay:      rgba(15, 12, 8, 0.72);
-  --color-border:       rgba(201, 168, 76, 0.2);
+  --color-bg:           #1A0A0A;
+  --color-surface:      #1e0c0e;
+  --color-surface-alt:  #281014;
+  --color-cream:        #FAF6EF;
+  --color-cream-dim:    #c8b89a;
+  --color-gold:         #D4A017;
+  --color-gold-hover:   #e8b82a;
+  --color-gold-dim:     rgba(212, 160, 23, 0.15);
+  --color-red:          #C41E3A;
+  --color-red-deep:     #7D0A22;
+  --color-overlay:      rgba(10, 3, 5, 0.72);
+  --color-border:       rgba(212, 160, 23, 0.2);
   --color-error:        #e07070;
   --color-error-bg:     rgba(224, 112, 112, 0.08);
-  --color-success-bg:   rgba(142, 200, 142, 0.1);
-  --color-success-txt:  #a8d8a8;
+  --color-success-bg:   rgba(196, 30, 58, 0.12);
+  --color-success-txt:  #f5c6ce;
 
   /* Typography */
-  --font-heading: 'Cormorant Garamond', Georgia, serif;
-  --font-body:    'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'Ma Shan Zheng', 'Noto Serif SC', serif;
+  --font-heading: 'Cormorant Garamond', 'EB Garamond', serif;
+  --font-body:    'Noto Serif', 'Lora', serif;
 
   /* Font Sizes */
   --fs-xs:   0.75rem;
@@ -64,8 +67,8 @@
   /* Effects */
   --radius-sm:    4px;
   --radius-md:    8px;
-  --shadow-card:  0 4px 28px rgba(0, 0, 0, 0.5);
-  --shadow-hover: 0 14px 44px rgba(0, 0, 0, 0.7);
+  --shadow-card:  0 4px 28px rgba(0, 0, 0, 0.6);
+  --shadow-hover: 0 14px 44px rgba(0, 0, 0, 0.8);
   --transition:   0.3s ease;
 }
 
@@ -92,7 +95,7 @@ body {
   background-color: var(--color-bg);
   color: var(--color-cream);
   font-family: var(--font-body);
-  font-weight: 300;
+  font-weight: 400;
   font-size: var(--fs-base);
   line-height: 1.7;
   overflow-x: hidden;
@@ -165,17 +168,18 @@ address {
 }
 
 .btn--primary {
-  background-color: var(--color-gold);
-  color: var(--color-bg);
-  border: 2px solid var(--color-gold);
+  background-color: var(--color-red);
+  color: var(--color-cream);
+  border: 2px solid var(--color-red);
 }
 
 .btn--primary:hover,
 .btn--primary:focus-visible {
-  background-color: var(--color-gold-hover);
-  border-color: var(--color-gold-hover);
+  background-color: var(--color-gold);
+  border-color: var(--color-gold);
+  color: var(--color-bg);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(201, 168, 76, 0.4);
+  box-shadow: 0 8px 24px rgba(212, 160, 23, 0.4);
 }
 
 .btn--full {
@@ -192,21 +196,22 @@ address {
 
 /* Section headings */
 .section-title {
-  font-family: var(--font-heading);
+  font-family: var(--font-display);
   font-size: clamp(2rem, 4vw, 2.75rem);
   font-weight: 400;
   color: var(--color-cream);
   text-align: center;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   line-height: 1.2;
 }
 
 .section-subtitle {
+  font-family: var(--font-body);
   font-size: var(--fs-sm);
   color: var(--color-cream-dim);
   text-align: center;
-  letter-spacing: 0.06em;
-  max-width: 520px;
+  letter-spacing: 0.04em;
+  max-width: 560px;
   margin-inline: auto;
   margin-top: var(--sp-xs);
   margin-bottom: var(--sp-lg);
@@ -238,7 +243,7 @@ address {
 .fade-in {
   opacity: 0;
   transform: translateY(28px);
-  transition: opacity 0.75s ease, transform 0.75s ease;
+  transition: opacity 0.85s ease, transform 0.85s ease;
 }
 
 .fade-in.is-visible {
@@ -276,10 +281,10 @@ address {
 
 /* Scrolled state — added by JS */
 .site-header--scrolled {
-  background-color: rgba(26, 26, 26, 0.97);
+  background-color: rgba(26, 10, 10, 0.97);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.6);
 }
 
 .nav {
@@ -291,11 +296,11 @@ address {
 
 /* Logo */
 .nav__logo {
-  font-family: var(--font-heading);
+  font-family: var(--font-display);
   font-size: 1.4rem;
   font-weight: 400;
   color: var(--color-cream);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   white-space: nowrap;
   transition: color var(--transition);
 }
@@ -311,6 +316,7 @@ address {
 }
 
 .nav__link {
+  font-family: var(--font-body);
   font-size: var(--fs-xs);
   font-weight: 600;
   letter-spacing: 0.18em;
@@ -383,7 +389,7 @@ address {
   position: fixed;
   inset-block-start: var(--nav-height);
   inset-inline: 0;
-  background-color: rgba(26, 26, 26, 0.98);
+  background-color: rgba(26, 10, 10, 0.98);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   padding: var(--sp-md);
@@ -417,7 +423,7 @@ address {
 .hero__bg {
   position: absolute;
   inset: 0;
-  background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&q=85');
+  background-image: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1600&q=85');
   background-size: cover;
   background-position: center;
   transform: scale(1.03);
@@ -432,12 +438,11 @@ address {
 .hero__overlay {
   position: absolute;
   inset: 0;
-  background: var(--color-overlay);
   background: linear-gradient(
     to bottom,
-    rgba(15, 12, 8, 0.55) 0%,
-    rgba(15, 12, 8, 0.78) 60%,
-    rgba(15, 12, 8, 0.9) 100%
+    rgba(26, 5, 8, 0.55) 0%,
+    rgba(26, 5, 8, 0.80) 60%,
+    rgba(10, 2, 3, 0.96) 100%
   );
   z-index: 1;
 }
@@ -446,14 +451,15 @@ address {
   position: relative;
   z-index: 2;
   text-align: center;
-  max-width: 760px;
+  max-width: 800px;
   padding-inline: var(--sp-md);
   animation: heroReveal 1.4s ease both;
 }
 
 .hero__eyebrow {
+  font-family: var(--font-body);
   font-size: var(--fs-xs);
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: 0.35em;
   text-transform: uppercase;
   color: var(--color-gold);
@@ -461,22 +467,23 @@ address {
 }
 
 .hero__title {
-  font-family: var(--font-heading);
+  font-family: var(--font-display);
   font-size: var(--fs-hero);
   font-weight: 400;
   line-height: 1.05;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   color: var(--color-cream);
   margin-bottom: var(--sp-sm);
 }
 
 .hero__tagline {
-  font-size: var(--fs-sm);
-  font-weight: 300;
-  letter-spacing: 0.12em;
+  font-family: var(--font-heading);
+  font-size: var(--fs-md);
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.06em;
   color: var(--color-cream-dim);
   margin-bottom: var(--sp-lg);
-  text-transform: uppercase;
 }
 
 /* Scroll indicator */
@@ -516,19 +523,19 @@ address {
   display: flex;
   align-items: center;
   gap: var(--sp-md);
-  font-family: var(--font-heading);
-  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
   font-weight: 400;
-  font-style: italic;
   color: var(--color-gold);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   white-space: nowrap;
 }
 
 .menu__category-line {
   flex: 1;
   height: 1px;
-  background: var(--color-border);
+  background: linear-gradient(to right, transparent, var(--color-red), transparent);
+  opacity: 0.6;
 }
 
 /* Dish grid */
@@ -544,8 +551,8 @@ address {
   border-radius: var(--radius-md);
   overflow: hidden;
   box-shadow: var(--shadow-card);
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  transition: transform var(--transition), box-shadow var(--transition);
+  border: 1px solid rgba(212, 160, 23, 0.08);
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
   cursor: default;
 }
 
@@ -553,6 +560,7 @@ address {
 .dish-card:focus-within {
   transform: translateY(-6px);
   box-shadow: var(--shadow-hover);
+  border-color: rgba(212, 160, 23, 0.25);
 }
 
 .dish-card__img-wrap {
@@ -564,7 +572,7 @@ address {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform 0.6s ease;
 }
 
 .dish-card:hover .dish-card__img {
@@ -580,7 +588,7 @@ address {
 
 .dish-card__name {
   font-family: var(--font-heading);
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   font-weight: 600;
   color: var(--color-cream);
   letter-spacing: 0.02em;
@@ -590,11 +598,12 @@ address {
 .dish-card__desc {
   font-size: var(--fs-xs);
   color: var(--color-cream-dim);
-  letter-spacing: 0.04em;
-  line-height: 1.6;
+  letter-spacing: 0.03em;
+  line-height: 1.65;
 }
 
 .dish-card__price {
+  font-family: var(--font-heading);
   font-size: var(--fs-sm);
   font-weight: 600;
   color: var(--color-gold);
@@ -639,7 +648,7 @@ address {
 .testimonial-card {
   text-align: center;
   padding: var(--sp-md) var(--sp-sm);
-  animation: slideReveal 0.5s ease both;
+  animation: slideReveal 0.6s ease both;
 }
 
 .testimonial-card__stars {
@@ -655,7 +664,7 @@ address {
   font-style: italic;
   font-weight: 400;
   color: var(--color-cream);
-  line-height: 1.65;
+  line-height: 1.7;
   max-width: 600px;
   margin-inline: auto;
   margin-bottom: var(--sp-md);
@@ -670,6 +679,7 @@ address {
 }
 
 .testimonial-card__name {
+  font-family: var(--font-body);
   font-size: var(--fs-xs);
   font-weight: 600;
   letter-spacing: 0.18em;
@@ -705,7 +715,7 @@ address {
 .carousel__btn:focus-visible {
   color: var(--color-gold);
   border-color: var(--color-gold);
-  background: rgba(201, 168, 76, 0.1);
+  background: rgba(212, 160, 23, 0.1);
 }
 
 /* Dot indicators */
@@ -755,12 +765,12 @@ address {
   text-align: center;
   padding: var(--sp-lg) var(--sp-md);
   background: var(--color-success-bg);
-  border: 1px solid rgba(168, 216, 168, 0.2);
+  border: 1px solid rgba(196, 30, 58, 0.25);
   border-radius: var(--radius-md);
   color: var(--color-success-txt);
   font-size: var(--fs-md);
   line-height: 1.8;
-  animation: slideReveal 0.5s ease both;
+  animation: slideReveal 0.6s ease both;
 }
 
 .form__success p + p {
@@ -786,6 +796,7 @@ address {
 
 /* Labels */
 .form__label {
+  font-family: var(--font-body);
   font-size: var(--fs-xs);
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -794,12 +805,12 @@ address {
 }
 
 .form__required {
-  color: var(--color-gold);
+  color: var(--color-red);
   margin-left: 2px;
 }
 
 .form__optional {
-  font-weight: 300;
+  font-weight: 400;
   text-transform: none;
   letter-spacing: 0;
   font-size: 0.7rem;
@@ -816,14 +827,14 @@ address {
   padding: 0.75rem 1rem;
   font-family: var(--font-body);
   font-size: var(--fs-sm);
-  font-weight: 300;
+  font-weight: 400;
   width: 100%;
   transition: border-color var(--transition), box-shadow var(--transition);
   color-scheme: dark;
 }
 
 .form__input::placeholder {
-  color: rgba(200, 192, 176, 0.35);
+  color: rgba(200, 184, 154, 0.35);
 }
 
 .form__input:focus {
@@ -841,7 +852,7 @@ address {
 .form__select {
   appearance: none;
   -webkit-appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c9a84c' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23D4A017' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 1rem center;
   padding-right: 2.5rem;
@@ -875,7 +886,7 @@ address {
    9. FOOTER
    ============================================================ */
 .site-footer {
-  background-color: #111;
+  background-color: #0d0406;
   border-top: 1px solid var(--color-border);
   padding-block: var(--sp-xl) var(--sp-md);
 }
@@ -888,10 +899,10 @@ address {
 }
 
 .footer__logo {
-  font-family: var(--font-heading);
+  font-family: var(--font-display);
   font-size: 1.5rem;
   font-weight: 400;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   color: var(--color-cream);
   margin-bottom: var(--sp-sm);
 }
@@ -999,10 +1010,10 @@ address {
 }
 
 .footer__tagline-small {
-  font-family: var(--font-heading);
-  font-size: 0.9rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
   color: var(--color-gold);
-  opacity: 0.7;
+  opacity: 0.75;
   letter-spacing: 0.04em;
 }
 
