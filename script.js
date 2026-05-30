@@ -17,6 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initCarousel();
   initForm();
   initCopyrightYear();
+  initWhatsApp();
+  initLocateMe();
 });
 
 
@@ -393,4 +395,59 @@ function initForm() {
 function initCopyrightYear() {
   const el = document.getElementById('copyright-year');
   if (el) el.textContent = new Date().getFullYear();
+}
+
+
+/* ============================================================
+   LOCATE ME MAP — floating button + pop-up overlay
+   ============================================================ */
+function initLocateMe() {
+  const btn    = document.getElementById('locate-me-btn');
+  const widget = document.getElementById('map-widget');
+  const close  = document.getElementById('map-popup-close');
+  if (!btn || !widget || !close) return;
+
+  function openMap() {
+    widget.classList.add('is-open');
+    widget.setAttribute('aria-hidden', 'false');
+    btn.setAttribute('aria-expanded', 'true');
+    close.focus();
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMap() {
+    widget.classList.remove('is-open');
+    widget.setAttribute('aria-hidden', 'true');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.focus();
+    document.body.style.overflow = '';
+  }
+
+  btn.addEventListener('click', openMap);
+  close.addEventListener('click', closeMap);
+
+  widget.addEventListener('click', (e) => {
+    if (e.target === widget) closeMap();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && widget.classList.contains('is-open')) closeMap();
+  });
+}
+
+
+/* ============================================================
+   WHATSAPP CHAT BUTTON — floating bottom-right widget
+   ============================================================ */
+function initWhatsApp() {
+  const btn = document.getElementById('whatsapp-btn');
+  if (!btn) return;
+
+  // Delay appearance slightly so it doesn't compete with page load animations
+  const wrap = document.getElementById('whatsapp-wrap');
+  if (wrap) {
+    wrap.style.opacity = '0';
+    wrap.style.transition = 'opacity 0.4s ease';
+    setTimeout(() => { wrap.style.opacity = '1'; }, 1200);
+  }
 }

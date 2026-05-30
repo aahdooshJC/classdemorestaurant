@@ -15,6 +15,7 @@ A single-page restaurant website for a high-class Imperial Chinese dining experi
 - Mobile hamburger nav with body scroll lock and Escape-to-close
 - Testimonials carousel with auto-play, prev/next controls, and pause on hover
 - Reservation form with client-side validation and success confirmation
+- WhatsApp floating chat button with pulse animation and tooltip
 - Accessible — ARIA attributes on interactive elements, `prefers-reduced-motion` respected
 
 ## Structure
